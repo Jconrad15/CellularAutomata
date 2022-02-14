@@ -35,6 +35,12 @@ namespace CellularAutomata
             }
         }
 
+        public void Update()
+        {
+
+        }
+
+
         /// <summary>
         /// Returns a neighboring cell in the provided direction.
         /// </summary>
