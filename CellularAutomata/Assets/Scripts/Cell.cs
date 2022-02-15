@@ -1,22 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CellularAutomata
 {
-    public class Cell
+    public class Cell: MonoBehaviour
     {
-        public bool isFilled;
+        private bool isAlive;
+        public bool IsAlive 
+        {
+            get 
+            { 
+                return isAlive; 
+            }
+            set 
+            { 
+                isAlive = value;
+                UpdateColor();
+            } 
+        }
 
         public int x;
         public int y;
         public int i;
 
-        public Cell(bool isFilled, int x, int y, int i)
+        private Color32 filledColor = new Color32(169, 184, 202, 255);
+        private Color32 emptyColor = Color.black;
+
+        private SpriteRenderer sr;
+
+        public void SetUp(bool isAlive, int x, int y, int i)
         {
-            this.isFilled = isFilled;
+            this.isAlive = isAlive;
             this.x = x;
             this.y = y;
             this.i = i;
+
+            sr = gameObject.GetComponent<SpriteRenderer>();
+            UpdateColor();
         }
+
+        private void UpdateColor()
+        {
+            if (isAlive == true)
+            {
+                sr.color = filledColor;
+                return;
+            }
+
+            sr.color = emptyColor;
+        }
+
+        private void OnMouseDown()
+        {
+            isAlive = !isAlive;
+            UpdateColor();
+        }
+
+
+
+
     }
 }
