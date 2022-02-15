@@ -36,6 +36,7 @@ namespace CellularAutomata
             // Register user input
             userInputController.RegisterIsPaused(OnPaused);
             userInputController.RegisterSpeedChanged(OnSpeedChanged);
+            userInputController.RegisterClearAll(ClearAll);
 
             GenerateGrid();
         }
@@ -179,6 +180,18 @@ namespace CellularAutomata
         {
             iteractionSpeed *= change;
             Debug.Log("Speed");
+        }
+
+        /// <summary>
+        /// Kills all of the cells.
+        /// </summary>
+        private void ClearAll()
+        {
+            Debug.Log("ClearAll");
+            for (int i = 0; i < grid.Count; i++)
+            {
+                grid[i].IsAlive = false;
+            }
         }
 
         /// <summary>
