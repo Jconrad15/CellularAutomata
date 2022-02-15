@@ -9,6 +9,9 @@ namespace CellularAutomata
     public class CellGrid: MonoBehaviour
     {
         [SerializeField]
+        private UserInputController userInputController;
+
+        [SerializeField]
         private GameObject cellPrefab;
 
         private List<Cell> grid;
@@ -26,8 +29,12 @@ namespace CellularAutomata
             isPaused = true;
             counter = 0;
 
-            width = 100;
-            height = 50;
+            width = 40;
+            height = 20;
+
+            // Register user input
+            userInputController.RegisterIsPaused(OnPaused);
+
 
             GenerateGrid();
         }
@@ -70,8 +77,6 @@ namespace CellularAutomata
 
         public void Update()
         {
-            UserInput();
-
             if (isPaused == false)
             {
                 SimulateGameOfLife();
@@ -145,7 +150,6 @@ namespace CellularAutomata
                 }
             }
 
-
             return isAlive;
         }
 
@@ -166,13 +170,9 @@ namespace CellularAutomata
             return aliveNeighborCount;
         }
 
-        private void UserInput()
+        private void OnPaused(bool p)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                isPaused = !isPaused;
-                Debug.Log("GamePaused is " + isPaused);
-            }
+            isPaused = p;
         }
 
         /// <summary>
