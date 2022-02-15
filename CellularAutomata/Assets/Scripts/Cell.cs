@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,8 @@ namespace CellularAutomata
 {
     public class Cell: MonoBehaviour
     {
+        public Action cbCellClicked;
+
         private bool isAlive;
         public bool IsAlive 
         {
@@ -55,8 +57,20 @@ namespace CellularAutomata
         {
             isAlive = !isAlive;
             UpdateColor();
+
+            cbCellClicked.Invoke();
         }
 
+        // Callbacks
+        public void RegisterCellClicked(Action callbackFunc)
+        {
+            cbCellClicked += callbackFunc;
+        }
+
+        public void UnregisterCellClicked(Action callbackFunc)
+        {
+            cbCellClicked -= callbackFunc;
+        }
 
 
 

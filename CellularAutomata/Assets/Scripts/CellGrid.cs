@@ -12,6 +12,9 @@ namespace CellularAutomata
         private UserInputController userInputController;
 
         [SerializeField]
+        private SoundController soundController;
+
+        [SerializeField]
         private GameObject cellPrefab;
 
         private List<Cell> grid;
@@ -73,6 +76,8 @@ namespace CellularAutomata
             // Get and setup cell
             Cell cell = cellGO.GetComponent<Cell>();
             cell.SetUp(false, x, y, i);
+
+            cell.RegisterCellClicked(soundController.OnCellClicked);
 
             grid.Add(cell);
         }
