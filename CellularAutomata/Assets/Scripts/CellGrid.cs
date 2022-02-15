@@ -93,7 +93,6 @@ namespace CellularAutomata
             // Reduce counter
             counter -= counterThreshold;
 
-            Debug.Log("Next Generation");
             bool[] replacementGrid = new bool[grid.Count];
 
             // Determine next generation
