@@ -26,8 +26,8 @@ namespace CellularAutomata
             isPaused = true;
             counter = 0;
 
-            width = 16;
-            height = 8;
+            width = 100;
+            height = 50;
 
             GenerateGrid();
         }
