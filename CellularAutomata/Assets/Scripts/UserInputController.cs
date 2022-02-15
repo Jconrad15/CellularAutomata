@@ -13,10 +13,10 @@ namespace CellularAutomata
         // Update is called once per frame
         void Update()
         {
-            UserInput();
+            PauseInput();
         }
 
-        private void UserInput()
+        private void PauseInput()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

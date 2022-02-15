@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 namespace CellularAutomata
 {
@@ -22,6 +19,5 @@ namespace CellularAutomata
         {
             pausePanel.SetActive(isPaused);
         }
-
     }
 }
