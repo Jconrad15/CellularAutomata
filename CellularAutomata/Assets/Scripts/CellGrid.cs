@@ -22,6 +22,7 @@ namespace CellularAutomata
 
         private float counterThreshold = 1.5f;
         private float counter;
+        private float iteractionSpeed = 1f;
 
         private void OnEnable()
         {
@@ -34,7 +35,7 @@ namespace CellularAutomata
 
             // Register user input
             userInputController.RegisterIsPaused(OnPaused);
-
+            userInputController.RegisterSpeedChanged(OnSpeedChanged);
 
             GenerateGrid();
         }
@@ -86,11 +87,11 @@ namespace CellularAutomata
         private void SimulateGameOfLife()
         {
             // First check update time thresholds
-            counter += Time.deltaTime;
+            counter += (Time.deltaTime * iteractionSpeed);
             if (counter < counterThreshold) { return; }
 
-            // Reduce counter back to zero
-            counter = 0;
+            // Reduce counter
+            counter -= counterThreshold;
 
             Debug.Log("Next Generation");
             bool[] replacementGrid = new bool[grid.Count];
@@ -173,6 +174,12 @@ namespace CellularAutomata
         private void OnPaused(bool p)
         {
             isPaused = p;
+        }
+
+        private void OnSpeedChanged(float change)
+        {
+            iteractionSpeed *= change;
+            Debug.Log("Speed");
         }
 
         /// <summary>

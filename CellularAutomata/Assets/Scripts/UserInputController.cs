@@ -9,6 +9,7 @@ namespace CellularAutomata
         private bool isPaused;
 
         public Action<bool> cbIsPaused;
+        public Action<float> cbSpeedChanged;
 
         // Update is called once per frame
         void Update()
@@ -23,6 +24,28 @@ namespace CellularAutomata
                 isPaused = !isPaused;
                 cbIsPaused.Invoke(isPaused);
             }
+        }
+
+        public void IncreaseSpeed()
+        {
+            cbSpeedChanged.Invoke(2f);
+        }
+
+        public void DecreaseSpeed()
+        {
+            cbSpeedChanged.Invoke(0.5f);
+        }
+
+        // Callbacks
+
+        public void RegisterSpeedChanged(Action<float> callbackFunc)
+        {
+            cbSpeedChanged += callbackFunc;
+        }
+
+        public void UnregisterSpeedChanged(Action<float> callbackFunc)
+        {
+            cbSpeedChanged -= callbackFunc;
         }
 
         public void RegisterIsPaused(Action<bool> callbackFunc)
